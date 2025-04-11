@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-179_6$n4b+)emhr+qtci^b8hrx-0&33o74*b0$jco=1jh+yvqo
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # Turn off debug in production
+ALLOWED_HOSTS = ['student-management-system-lp71.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
