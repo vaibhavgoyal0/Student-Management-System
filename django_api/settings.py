@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import django_heroku  # Add this if using django-heroku
+from urllib.parse import urlparse
 
 # Base directory
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,8 +26,6 @@ SECRET_KEY = 'django-insecure-179_6$n4b+)emhr+qtci^b8hrx-0&33o74*b0$jco=1jh+yvqo
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # Turn off debug in production
-ALLOWED_HOSTS = ['yourapp.herokuapp.com', 'localhost', '127.0.0.1']  # Replace 'yourapp' with your Heroku app name
-
 
 # Application definition
 
@@ -70,6 +69,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_api.wsgi.application'
 
+DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL:
+    db_info = urlparse(DATABASE_URL)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': db_info.path[1:],
+            'USER': db_info.username,
+            'PASSWORD': db_info.password,
+            'HOST': db_info.hostname,
+            'PORT': db_info.port,
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
