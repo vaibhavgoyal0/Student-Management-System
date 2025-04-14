@@ -146,5 +146,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Apply Heroku settings (if using django-heroku)
-django_heroku.settings(locals())  # Add this at the bottom if using django-heroku
+
+CORS_ALLOW_ALL_ORIGINS = True
