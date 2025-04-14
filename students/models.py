@@ -1,7 +1,7 @@
 from django.db import models
 
 class SecondYearStudent(models.Model):
-    student_id = models.CharField(max_length=10, unique=True)
+    student_id = models.CharField(max_length=15, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     major = models.CharField(max_length=50)
@@ -13,7 +13,7 @@ class SecondYearStudent(models.Model):
         return f"{self.first_name} {self.last_name} (Second Year)"
 
 class ThirdFourthYearStudent(models.Model):
-    student_id = models.CharField(max_length=10, unique=True)
+    student_id = models.CharField(max_length=15, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     major = models.CharField(max_length=50)
